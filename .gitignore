@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# sub repositories
+sst-core/
+gpgpu-sim_distribution/
+sst-elements/
+run_tests/
+sst-tutorial/
