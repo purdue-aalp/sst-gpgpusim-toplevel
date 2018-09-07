@@ -112,7 +112,6 @@ fi
 
 if [ "$SST_TUTORIAL_CONFIG" != "1" ];  then
     mkdir -p run_tests/vectorAdd
-    cp $GPGPUSIM_ROOT/configs/4.x-cfgs/SM7_TITANV/* run_tests/vectorAdd/
     export SST_TUTORIAL_CONFIG="1"
 else
     echo "Assumed sst-tutorial configured"
