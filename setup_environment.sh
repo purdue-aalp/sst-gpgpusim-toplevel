@@ -54,8 +54,8 @@ if [ "$SST_CORE_CONFIG" != "1" ];  then
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
     ./configure --prefix=$SST_CORE_HOME
-#    make all -j
-#    make install
+    make all -j
+    make install
     export PATH=$SST_CORE_HOME/bin:$PATH
     cd -
     export SST_CORE_CONFIG="1"
@@ -74,7 +74,7 @@ if [ "$SST_GPGPU_SIM_CONFIG" != "1" ];  then
     git branch sst_support origin/sst_support 
     git checkout sst_support
     source setup_environment 
-#    make -j
+    make -j
     cd -
     export SST_GPGPU_SIM_CONFIG="1"
 else
@@ -95,8 +95,8 @@ if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
     cp $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
-#    make all -j
-#    make install
+    make all -j
+    make install
     cd -
     export LD_LIBRARY_PATH=$SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/:$LD_LIBRARY_PATH
     export SST_ELEMENTS_CONFIG="1"
