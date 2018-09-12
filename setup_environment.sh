@@ -1,3 +1,8 @@
+
+GPGPUSIM_REPO=https://bitbucket.org/tgrogers-purdue/gpgpu-sim_distribution.git
+SST_ELEMENTS_REPO=https://bitbucket.org/tgrogers-purdue/sst-elements.git
+SST_TUTORIAL_REPO=https://bitbucket.org/tgrogers-purdue/sst-tutorial.git
+
 if [ ! -n "$PIN_HOME" ]; then
 	echo "ERROR ** Install PIN and set PIN_HOME";
 	return;
@@ -65,14 +70,14 @@ fi
 
 # Get and configure gpgpu-sim
 if [ ! -d "gpgpu-sim_distribution" ]; then
-    git clone https://github.rcac.purdue.edu/green349/gpgpu-sim_distribution
+    git clone $GPGPUSIM_REPO
     unset SST_GPGPU_SIM_CONFIG;
 fi
 
 if [ "$SST_GPGPU_SIM_CONFIG" != "1" ];  then
     cd gpgpu-sim_distribution
-    git branch sst_support origin/sst_support 
-    git checkout sst_support
+#    git branch $GPGPUSIM_BRANCH
+#    git checkout sst_support
     source setup_environment 
     make -j
     cd -
@@ -83,15 +88,15 @@ fi
 
 # Get and configure sst-elements
 if [ ! -d "sst-elements" ]; then
-    git clone https://github.rcac.purdue.edu/green349/sst-elements
+    git clone $SST_ELEMENTS_REPO
     unset SST_ELEMENTS_CONFIG;
 fi
 
 if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
     cd sst-elements
     export SST_ELEMENTS_HOME=`pwd`
-    git branch devel_gpgpusim origin/devel_gpgpusim
-    git checkout devel_gpgpusim
+#    git branch $SST_ELEMENTS_BRANCH
+#    git checkout devel_gpgpusim
     cp $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
@@ -106,7 +111,7 @@ fi
 
 # Get and configure the sst-tutorial
 if [ ! -d "sst-tutorial" ]; then
-    git clone https://github.rcac.purdue.edu/green349/sst-tutorial
+    git clone $SST_TUTORIAL_REPO
     unset SST_TUTORIAL_CONFIG;
 fi
 
