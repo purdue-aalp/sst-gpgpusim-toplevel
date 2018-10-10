@@ -14,7 +14,10 @@ tests: sst-tutorial/exercises/vecAdd.cu
 	nvcc sst-tutorial/exercises/vecAdd.cu -o run_tests/vectorAdd/vectorAdd
 
 run_test: tests
-	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV/* . && cp ../../sst-tutorial/exercises/cuda-test/* . && sst --model-option="-c ariel.cfg" cuda-test.py
+	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem/* . && sst --model-option="-c ariel-gpu.cfg" cuda-test.py
+
+debug_test: tests
+	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem/* . && gdb --args sst --model-option="-c ariel-gpu.cfg" cuda-test.py
 
 full_clean:
 	rm -rf sst-core
