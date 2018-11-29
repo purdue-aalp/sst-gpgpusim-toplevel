@@ -1,7 +1,7 @@
 
-GPGPUSIM_REPO=https://bitbucket.org/tgrogers-purdue/gpgpu-sim_distribution.git
-SST_ELEMENTS_REPO=https://bitbucket.org/tgrogers-purdue/sst-elements.git
-SST_TUTORIAL_REPO=https://bitbucket.org/tgrogers-purdue/sst-tutorial.git
+GPGPUSIM_REPO=git@bitbucket.org:tgrogers-purdue/gpgpu-sim_distribution.git
+SST_ELEMENTS_REPO= git@bitbucket.org:tgrogers-purdue/sst-elements.git
+SST_TUTORIAL_REPO=git@bitbucket.org:tgrogers-purdue/sst-tutorial.git
 
 if [ ! -n "$PIN_HOME" ]; then
 	echo "ERROR ** Install PIN and set PIN_HOME";
