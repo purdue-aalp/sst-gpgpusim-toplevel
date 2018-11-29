@@ -80,7 +80,7 @@ if [ "$SST_GPGPU_SIM_CONFIG" != "1" ];  then
 #    git checkout sst_support
     source setup_environment 
     make -j
-    cd -
+    cd ../
     export SST_GPGPU_SIM_CONFIG="1"
 else
     echo "Assumed gpgpu-sim_distribution configured"
