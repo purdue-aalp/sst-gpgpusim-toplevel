@@ -51,10 +51,7 @@ fi
 # Get and configure sst-core
 if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
-    unset SST_CORE_CONFIG;
-fi
 
-if [ "$SST_CORE_CONFIG" != "1" ];  then
     cd sst-core
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
@@ -71,10 +68,7 @@ fi
 # Get and configure gpgpu-sim
 if [ ! -d "gpgpu-sim_distribution" ]; then
     git clone $GPGPUSIM_REPO
-    unset SST_GPGPU_SIM_CONFIG;
-fi
 
-if [ "$SST_GPGPU_SIM_CONFIG" != "1" ];  then
     cd gpgpu-sim_distribution
 #    git branch $GPGPUSIM_BRANCH
 #    git checkout sst_support
@@ -89,10 +83,7 @@ fi
 # Get and configure sst-elements
 if [ ! -d "sst-elements" ]; then
     git clone $SST_ELEMENTS_REPO
-    unset SST_ELEMENTS_CONFIG;
-fi
-
-if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
+    
     cd sst-elements
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
@@ -112,12 +103,8 @@ fi
 # Get and configure the sst-tutorial
 if [ ! -d "sst-tutorial" ]; then
     git clone $SST_TUTORIAL_REPO
-    unset SST_TUTORIAL_CONFIG;
-fi
 
-if [ "$SST_TUTORIAL_CONFIG" != "1" ];  then
     mkdir -p run_tests/vectorAdd
-    export SST_TUTORIAL_CONFIG="1"
 else
     echo "Assumed sst-tutorial configured"
 fi
