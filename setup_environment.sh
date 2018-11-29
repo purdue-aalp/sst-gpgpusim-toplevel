@@ -1,6 +1,6 @@
 
 GPGPUSIM_REPO=git@bitbucket.org:tgrogers-purdue/gpgpu-sim_distribution.git
-SST_ELEMENTS_REPO= git@bitbucket.org:tgrogers-purdue/sst-elements.git
+SST_ELEMENTS_REPO=git@bitbucket.org:tgrogers-purdue/sst-elements.git
 SST_TUTORIAL_REPO=git@bitbucket.org:tgrogers-purdue/sst-tutorial.git
 
 if [ ! -n "$PIN_HOME" ]; then
@@ -60,7 +60,6 @@ if [ ! -d "sst-core" ]; then
     make install
     export PATH=$SST_CORE_HOME/bin:$PATH
     cd ../
-    export SST_CORE_CONFIG="1"
 else
     echo "Assumed sst-core already pulled and built"
 fi
@@ -75,7 +74,6 @@ if [ ! -d "gpgpu-sim_distribution" ]; then
     source setup_environment 
     make -j
     cd ../
-    export SST_GPGPU_SIM_CONFIG="1"
 else
     echo "Assumed gpgpu-sim_distribution configured"
 fi
