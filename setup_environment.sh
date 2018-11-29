@@ -62,7 +62,7 @@ if [ "$SST_CORE_CONFIG" != "1" ];  then
     make all -j
     make install
     export PATH=$SST_CORE_HOME/bin:$PATH
-    cd -
+    cd ../
     export SST_CORE_CONFIG="1"
 else
     echo "Assumed sst-core already pulled and built"
@@ -102,7 +102,7 @@ if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
     make all -j
     make install
-    cd -
+    cd ../
     export LD_LIBRARY_PATH=$SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/:$LD_LIBRARY_PATH
     export SST_ELEMENTS_CONFIG="1"
 else
