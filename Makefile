@@ -17,6 +17,10 @@ lulesh-tests: sst-tutorial/exercises/lulesh
 	mkdir -p run_tests/lulesh/
 	cp sst-tutorial/exercises/lulesh run_tests/lulesh/
 
+kokkos-tests: sst-tutorial/exercises/kokkos
+	mkdir -p run_tests/kokkos/
+	cp sst-tutorial/exercises/kokkos run_tests/kokkos/
+
 run_test: tests
 	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config=="python file" cuda-test.py
 
@@ -25,6 +29,9 @@ debug_test: tests
 
 run_test_lulesh: lulesh-tests
 	cd run_tests/lulesh/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-lulesh/* . && sst --model-option="-c ariel-gpu.cfg" cuda-test.py
+
+run_test_kokkos: kokkos-tests
+	cd run_tests/kokkos/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta-kokkos/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config="python file" cuda-test.py
 
 full_clean:
 	rm -rf sst-core
