@@ -1,7 +1,7 @@
 
-GPGPUSIM_REPO=https://bitbucket.org/tgrogers-purdue/gpgpu-sim_distribution.git
-SST_ELEMENTS_REPO=https://bitbucket.org/tgrogers-purdue/sst-elements.git
-SST_TUTORIAL_REPO=https://bitbucket.org/tgrogers-purdue/sst-tutorial.git
+GPGPUSIM_REPO=git@bitbucket.org:tgrogers-purdue/gpgpu-sim_distribution.git
+SST_ELEMENTS_REPO=git@bitbucket.org:tgrogers-purdue/sst-elements.git
+SST_TUTORIAL_REPO=git@bitbucket.org:tgrogers-purdue/sst-tutorial.git
 
 if [ ! -n "$PIN_HOME" ]; then
 	echo "ERROR ** Install PIN and set PIN_HOME";
@@ -51,10 +51,7 @@ fi
 # Get and configure sst-core
 if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
-    unset SST_CORE_CONFIG;
-fi
 
-if [ "$SST_CORE_CONFIG" != "1" ];  then
     cd sst-core
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
@@ -62,8 +59,7 @@ if [ "$SST_CORE_CONFIG" != "1" ];  then
     make all -j
     make install
     export PATH=$SST_CORE_HOME/bin:$PATH
-    cd -
-    export SST_CORE_CONFIG="1"
+    cd ../
 else
     echo "Assumed sst-core already pulled and built"
 fi
@@ -71,17 +67,13 @@ fi
 # Get and configure gpgpu-sim
 if [ ! -d "gpgpu-sim_distribution" ]; then
     git clone $GPGPUSIM_REPO
-    unset SST_GPGPU_SIM_CONFIG;
-fi
 
-if [ "$SST_GPGPU_SIM_CONFIG" != "1" ];  then
     cd gpgpu-sim_distribution
 #    git branch $GPGPUSIM_BRANCH
 #    git checkout sst_support
     source setup_environment 
     make -j
-    cd -
-    export SST_GPGPU_SIM_CONFIG="1"
+    cd ../
 else
     echo "Assumed gpgpu-sim_distribution configured"
 fi
@@ -89,10 +81,7 @@ fi
 # Get and configure sst-elements
 if [ ! -d "sst-elements" ]; then
     git clone $SST_ELEMENTS_REPO
-    unset SST_ELEMENTS_CONFIG;
-fi
-
-if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
+    
     cd sst-elements
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
@@ -102,7 +91,7 @@ if [ "$SST_ELEMENTS_CONFIG" != "1" ];  then
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
     make all -j
     make install
-    cd -
+    cd ../
     export LD_LIBRARY_PATH=$SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/:$LD_LIBRARY_PATH
     export SST_ELEMENTS_CONFIG="1"
 else
@@ -112,12 +101,8 @@ fi
 # Get and configure the sst-tutorial
 if [ ! -d "sst-tutorial" ]; then
     git clone $SST_TUTORIAL_REPO
-    unset SST_TUTORIAL_CONFIG;
-fi
 
-if [ "$SST_TUTORIAL_CONFIG" != "1" ];  then
     mkdir -p run_tests/vectorAdd
-    export SST_TUTORIAL_CONFIG="1"
 else
     echo "Assumed sst-tutorial configured"
 fi
