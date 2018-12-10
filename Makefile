@@ -18,7 +18,7 @@ lulesh-tests: sst-tutorial/exercises/lulesh
 	cp sst-tutorial/exercises/lulesh run_tests/lulesh/
 
 run_test: tests
-	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config=="python file" cuda-test.py
+	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta-cramsim/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config=="python file" cuda-test.py
 
 debug_test: tests
 	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && gdb --args sst --model-option="-c ariel-gpu-titanV.cfg" cuda-test.py
