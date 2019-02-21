@@ -1,7 +1,7 @@
 
-GPGPUSIM_REPO=git@bitbucket.org:tgrogers-purdue/gpgpu-sim_distribution.git
-SST_ELEMENTS_REPO=git@bitbucket.org:tgrogers-purdue/sst-elements.git
-SST_TUTORIAL_REPO=git@bitbucket.org:tgrogers-purdue/sst-tutorial.git
+GPGPUSIM_REPO=https://github.com/purdue-aalp/sst-gpgpusim
+SST_ELEMENTS_REPO=https://github.com/purdue-aalp/sst-elements
+SST_TUTORIAL_REPO=https://github.com/purdue-aalp/sst-tutorial
 
 if [ ! -n "$PIN_HOME" ]; then
 	echo "ERROR ** Install PIN and set PIN_HOME";
@@ -68,7 +68,7 @@ fi
 if [ ! -d "gpgpu-sim_distribution" ]; then
     git clone $GPGPUSIM_REPO
 
-    cd gpgpu-sim_distribution
+    cd sst-gpgpusim
 #    git branch $GPGPUSIM_BRANCH
 #    git checkout sst_support
     source setup_environment 
