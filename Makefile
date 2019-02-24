@@ -35,7 +35,7 @@ run_test_kokkos: kokkos-tests
 
 full_clean:
 	rm -rf sst-core
-	rm -rf gpgpu-sim_distribution
+	rm -rf sst-gpgpusim
 	rm -rf sst-elements
 	rm -rf sst-tutorial
 	rm -rf run_tests
