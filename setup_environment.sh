@@ -71,6 +71,8 @@ if [ ! -d "gpgpu-sim_distribution" ]; then
     cd sst-gpgpusim
 #    git branch $GPGPUSIM_BRANCH
 #    git checkout sst_support
+    git branch disaggregate_sst_support origin/disaggregate_sst_support
+    git checkout disaggregate_sst_support
     source setup_environment 
     make -j
     cd ../
@@ -86,6 +88,8 @@ if [ ! -d "sst-elements" ]; then
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
 #    git checkout devel_gpgpusim
+    git branch disaggregate_devel_gpgpusim origin/disaggregate_devel_gpgpusim
+    git checkout disaggregate_devel_gpgpusim
     cp --preserve=links $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
@@ -101,6 +105,10 @@ fi
 # Get and configure the sst-tutorial
 if [ ! -d "sst-tutorial" ]; then
     git clone $SST_TUTORIAL_REPO
+    cd sst-tutorial
+    git branch disaggregate origin/disaggregate
+    git checkout disaggregate
+    cd ../
 
     mkdir -p run_tests/vectorAdd
 else
