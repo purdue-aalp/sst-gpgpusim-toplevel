@@ -11,7 +11,7 @@ gpgpusim:
 
 tests: sst-tutorial/exercises/vecAdd.cu
 	mkdir -p run_tests/vectorAdd/
-	nvcc sst-tutorial/exercises/vecAdd.cu -o run_tests/vectorAdd/vectorAdd
+	nvcc sst-tutorial/exercises/vecAdd.cu -o run_tests/vectorAdd/vectorAdd -lcudart
 
 lulesh-tests: sst-tutorial/exercises/lulesh
 	mkdir -p run_tests/lulesh/
