@@ -51,8 +51,8 @@ fi
 # Get and configure sst-core
 if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
-
     cd sst-core
+    git checkout v8.0.0_beta
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
     ./configure --prefix=$SST_CORE_HOME
@@ -71,7 +71,7 @@ if [ ! -d "gpgpu-sim_distribution" ]; then
     cd sst-gpgpusim
 #    git branch $GPGPUSIM_BRANCH
 #    git checkout sst_support
-    source setup_environment 
+    source setup_environment
     make -j
     cd ../
 else
@@ -81,8 +81,9 @@ fi
 # Get and configure sst-elements
 if [ ! -d "sst-elements" ]; then
     git clone $SST_ELEMENTS_REPO
-    
+
     cd sst-elements
+    git checkout -b temp_fix HEAD~
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
 #    git checkout devel_gpgpusim
