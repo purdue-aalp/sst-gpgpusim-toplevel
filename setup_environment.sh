@@ -83,7 +83,6 @@ if [ ! -d "sst-elements" ]; then
     git clone $SST_ELEMENTS_REPO
 
     cd sst-elements
-    git checkout -b temp_fix HEAD~
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
 #    git checkout devel_gpgpusim
