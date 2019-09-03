@@ -51,8 +51,8 @@ fi
 # Get and configure sst-core
 if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
-
     cd sst-core
+    git checkout v8.0.0_beta
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
     ./configure --prefix=$SST_CORE_HOME
@@ -83,7 +83,7 @@ fi
 # Get and configure sst-elements
 if [ ! -d "sst-elements" ]; then
     git clone $SST_ELEMENTS_REPO
-    
+
     cd sst-elements
     export SST_ELEMENTS_HOME=`pwd`
 #    git branch $SST_ELEMENTS_BRANCH
@@ -91,6 +91,7 @@ if [ ! -d "sst-elements" ]; then
     git branch disaggregate_devel_gpgpusim origin/disaggregate_devel_gpgpusim
     git checkout disaggregate_devel_gpgpusim
     cp --preserve=links $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/
+    cp --preserve=links $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/GPUSched/
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
     make all -j
