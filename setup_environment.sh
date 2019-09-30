@@ -88,7 +88,7 @@ if [ ! -d "sst-elements" ]; then
 #    git checkout devel_gpgpusim
     cp --preserve=links $GPGPUSIM_ROOT/lib/$GPGPUSIM_CONFIG/libcudart_mod.so $SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/
     ./autogen.sh
-    ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME
+    ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME --with-cuda=$CUDA_INSTALL_PATH --with-gpgpusim=$GPGPUSIM_ROOT
     make all -j
     make install
     cd ../
