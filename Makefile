@@ -27,7 +27,7 @@ bfs-tests: sst-tutorial/exercises/bfs
 	cp sst-tutorial/exercises/graph*.txt run_tests/bfs/
 
 run_test: tests
-	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta-cramsim/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config=="python file" cuda-test.py
+	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta-cramsim/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config="python file" cuda-test.py
 
 run_test_parallel: tests
 	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/volta-cramsim-parallel/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config="python file" cuda-test.py
@@ -36,7 +36,7 @@ debug_test_parallel: tests
 	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/volta-cramsim-parallel/* . && gdb --args sst --model-option="-c ariel-gpu-titanV.cfg" --output-config="python file" cuda-test.py
 
 run_test_simple_mem: tests
-	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config=="python file" cuda-test.py
+	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && sst --model-option="-c ariel-gpu-titanV.cfg" --output-config="python file" cuda-test.py
 
 debug_test: tests
 	cd run_tests/vectorAdd/ && cp $(GPGPUSIM_ROOT)/configs/4.x-cfgs/SM7_TITANV_SST/* . && cp ../../sst-tutorial/exercises/cuda-test-gpu-mem-volta/* . && gdb --args sst --model-option="-c ariel-gpu-titanV.cfg" cuda-test.py
