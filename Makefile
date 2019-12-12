@@ -56,3 +56,4 @@ full_clean:
 	rm -rf sst-elements
 	rm -rf sst-tutorial
 	rm -rf run_tests
+	rm -rf openmpi*
