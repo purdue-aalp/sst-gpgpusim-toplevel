@@ -1,6 +1,7 @@
 
 GPGPUSIM_REPO=https://github.com/purdue-aalp/sst-gpgpusim
 SST_ELEMENTS_REPO=https://github.com/purdue-aalp/sst-elements
+BALAR_REPO=https://github.com/purdue-aalp/balar
 SST_TUTORIAL_REPO=https://github.com/purdue-aalp/sst-tutorial
 
 if [ ! -n "$PIN_HOME" ]; then
@@ -36,8 +37,8 @@ if [ $? = 1 ]; then
 fi
 
 CC_VERSION=`gcc --version | head -1 | awk '{for(i=1;i<=NF;i++){ if(match($i,/^[0-9]\.[0-9]\.[0-9]$/))  {print $i; exit 0}}}'`
-if [ "$CC_VERSION" != "4.8.2" ]; then
-    echo "WARNING - this setup has only been tested with gcc 4.8.2"
+if [ "$CC_VERSION" != "4.9.4" ]; then
+    echo "WARNING - this setup has only been tested with gcc 4.9.4"
 fi
 
 CUDA_VERSION_STRING=`$CUDA_INSTALL_PATH/bin/nvcc --version | awk '/release/ {print $5;}' | sed 's/,//'`;
@@ -66,8 +67,8 @@ fi
 if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
     cd sst-core
-    git checkout v8.0.0_beta
     export SST_CORE_HOME=`pwd`
+    git checkout 13b97e8f
     ./autogen.sh
     ./configure --prefix=$SST_CORE_HOME
     make all -j
@@ -79,12 +80,10 @@ else
 fi
 
 # Get and configure gpgpu-sim
-if [ ! -d "gpgpu-sim_distribution" ]; then
+if [ ! -d "sst-gpgpusim" ]; then
     git clone $GPGPUSIM_REPO
 
     cd sst-gpgpusim
-#    git branch $GPGPUSIM_BRANCH
-#    git checkout sst_support
     source setup_environment
     make -j
     cd ../
@@ -98,15 +97,14 @@ if [ ! -d "sst-elements" ]; then
 
     cd sst-elements
     export SST_ELEMENTS_HOME=`pwd`
-#    git branch $SST_ELEMENTS_BRANCH
-#    git checkout devel_gpgpusim
+    cd src/sst/elements
+    git clone $BALAR_REPO
+    cd ../../..
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME --with-cuda=$CUDA_INSTALL_PATH --with-gpgpusim=$GPGPUSIM_ROOT
     make all -j
     make install
     cd ../
-    export LD_LIBRARY_PATH=$SST_ELEMENTS_HOME/src/sst/elements/Gpgpusim/:$LD_LIBRARY_PATH
-    export SST_ELEMENTS_CONFIG="1"
 else
     echo "Assumed sst-elements configured"
 fi

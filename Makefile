@@ -45,6 +45,9 @@ run_vecAdd_parallel: vecAdd
 debug_vecAdd_parallel: vecAdd
 	cd run_tests/vectorAdd/ && cp -r ../../sst-tutorial/exercises/v100-vecAdd-parallel/* . && gdb --args sst --model-option="-c ariel-gpu-v100.cfg" --output-config="python file" cuda-test.py
 
+run_vecAdd_dis: vecAdd
+	cd run_tests/vectorAdd/ && cp -r ../../sst-tutorial/exercises/v100-vecAdd-parallel-dis/* . && mpirun -n 2 sst --partitioner=self --model-option="-c ariel-gpu-v100.cfg" --output-config="python file" --output-partition="partition.log" cuda-test.py
+
 run_kokkos: kokkos-tests
 	cd run_tests/kokkos/ && cp -r ../../sst-tutorial/exercises/v100-kokkos/* . && sst --model-option="-c ariel-gpu-v100.cfg -a gtest_filter=cuda.abs_double" --output-config="python file" cuda-test.py
 
