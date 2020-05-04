@@ -68,7 +68,6 @@ if [ ! -d "sst-core" ]; then
     git clone https://github.com/sstsimulator/sst-core
     cd sst-core
     export SST_CORE_HOME=`pwd`
-    git checkout 13b97e8f
     ./autogen.sh
     ./configure --prefix=$SST_CORE_HOME --disable-mem-pools
     make all -j
@@ -102,7 +101,7 @@ if [ ! -d "sst-elements" ]; then
     cd ../../..
     ./autogen.sh
     ./configure --prefix=$SST_ELEMENTS_HOME --with-sst-core=$SST_CORE_HOME --with-pin=$PIN_HOME --with-cuda=$CUDA_INSTALL_PATH --with-gpgpusim=$GPGPUSIM_ROOT
-    make all -j
+    make all
     make install
     cd ../
 else
