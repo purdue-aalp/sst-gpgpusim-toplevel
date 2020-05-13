@@ -112,6 +112,9 @@ fi
 # Get and configure the sst-tutorial
 if [ ! -d "sst-tutorial" ]; then
     git clone $SST_TUTORIAL_REPO
+    cd sst-tutorial
+    export SST_TUTORIAL=`pwd`
+    cd ..
 
     mkdir -p run_tests/vectorAdd
 else
