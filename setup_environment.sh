@@ -48,10 +48,10 @@ if [ $CUDA_VERSION_NUMBER -gt 9100 -o $CUDA_VERSION_NUMBER -lt 2030  ]; then
 	return
 fi
 
-if [ ! -d "openmpi-2.1.3" ]; then
-    wget https://download.open-mpi.org/release/open-mpi/v2.1/openmpi-2.1.3.tar.gz
-    tar xfz openmpi-2.1.3.tar.gz
-    cd openmpi-2.1.3
+if [ ! -d "openmpi-4.0.3" ]; then
+    wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.3.tar.gz
+    tar xfz openmpi-4.0.3.tar.gz
+    cd openmpi-4.0.3
     export MPIHOME=`pwd`
     ./configure --prefix=$MPIHOME
     make all -j
@@ -59,7 +59,10 @@ if [ ! -d "openmpi-2.1.3" ]; then
     export PATH=$MPIHOME/bin:$PATH
     export MPICC=mpicc
     export MPICXX=mpicxx
+    export PMIX_MCA_gds=hash
     export LD_LIBRARY_PATH=$MPIHOME/lib:$LD_LIBRARY_PATH
+    export DYLD_LIBRARY_PATH=$MPIHOME/lib:$DYLD_LIBRARY_PATH
+    export MANPATH=$MPIHOME/share/man:$DYLD_LIBRARY_PATH
     cd ..
 fi
 
