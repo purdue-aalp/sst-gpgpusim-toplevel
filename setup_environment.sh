@@ -72,7 +72,7 @@ if [ ! -d "sst-core" ]; then
     cd sst-core
     export SST_CORE_HOME=`pwd`
     ./autogen.sh
-    ./configure --prefix=$SST_CORE_HOME --disable-mem-pools
+    ./configure --prefix=$SST_CORE_HOME --disable-mem-pools --enable-debug
     make all -j
     make install
     export PATH=$SST_CORE_HOME/bin:$PATH
